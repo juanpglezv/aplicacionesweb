@@ -32,5 +32,11 @@
         </tr>
     </table>
     </form>
+    <?php
+    // Mostrar mensaje si exite
+    if(isset($_GET['mensaje'])){
+        echo "<p>" . htmlspecialchars($_GET['mensaje']) . "</p>";
+    }
+    ?>
 </body>
 </html>
