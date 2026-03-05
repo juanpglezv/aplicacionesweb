@@ -1,4 +1,6 @@
 <?php
+session_start();
+include("lib/conn.php");
 
 //Valida que el formulario se envie por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

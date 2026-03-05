@@ -6,7 +6,8 @@ session_start();
     header("Location: ../login.php");
      exit();
  }
- 
+
+ $nombre_usuario = $_SESSION["usuario"];
 ?>
 
 <!DOCTYPE html>
