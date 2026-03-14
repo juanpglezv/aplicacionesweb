@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículum - Desarrollador de Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 20px;
+            background: #ddd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: #667eea;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .about-text {
+            color: #333;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skill {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+        }
+
+        .experience-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .experience-head {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .experience-title {
+            font-weight: 700;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .experience-date {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .experience-desc {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 30px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile-photo"><img src="avatar.png" width='100%'>
+            </div>
+            <h1>Jose Garivaldi Martinez</h1>
+            <p>Desarrollador de Software Full Stack</p>
+            <div class="social-links">
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="#" title="Portafolio"><i class="fas fa-globe"></i></a>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Sección Acerca de -->
+            <div class="section">
+                <h2><i class="fas fa-user-circle"></i> Acerca de mí</h2>
+                <p class="about-text">
+                    Desarrollador de software apasionado con más de 5 años de experiencia en la creación de aplicaciones web escalables y robustas. Especializado en tecnologías modernas con un enfoque en la calidad del código y las mejores prácticas de desarrollo. Comprometido con el aprendizaje continuo y la innovación tecnológica.
+                </p>
+            </div>
+
+            <!-- Sección Habilidades Técnicas -->
+            <div class="section">
+                <h2><i class="fas fa-code"></i> Habilidades Técnicas</h2>
+                <div class="skills-container">
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>React</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>SQL</span>
+                            <span>82%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 82%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Node.js</span>
+                            <span>87%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 87%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>HTML/CSS</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Experiencia Laboral -->
+            <div class="section">
+                <h2><i class="fas fa-briefcase"></i> Experiencia Laboral</h2>
+
+                <div class="experience-item">
+                    <div class="experience-head">
+                        <div>
+                            <div class="experience-title">Desarrollador Senior Full Stack</div>
+                            <div class="experience-company">TechCorp Solutions</div>
+                        </div>
+                        <div class="experience-date">2022 - Actualidad</div>
+                    </div>
+                    <div class="experience-desc">
+                        Desarrollo y mantenimiento de aplicaciones web escalables. Liderazgo de equipo de 5 desarrolladores. Implementación de arquitecturas modernas y mejora continua de procesos.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-head">
+                        <div>
+                            <div class="experience-title">Desarrollador Full Stack</div>
+                            <div class="experience-company">Digital Innovations Inc</div>
+                        </div>
+                        <div class="experience-date">2020 - 2022</div>
+                    </div>
+                    <div class="experience-desc">
+                        Desarrollo de plataformas e-commerce y aplicaciones internas. Optimización de rendimiento y base de datos. Colaboración con equipos multidisciplinarios.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-head">
+                        <div>
+                            <div class="experience-title">Desarrollador Junior</div>
+                            <div class="experience-company">StartUp Web Dev</div>
+                        </div>
+                        <div class="experience-date">2019 - 2020</div>
+                    </div>
+                    <div class="experience-desc">
+                        Creación de interfaces web responsivas. Integración de APIs y bases de datos. Soporte técnico y mantenimiento de aplicaciones existentes.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
