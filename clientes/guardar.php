@@ -28,3 +28,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ){
     echo "Error: La pagina solo carga POST.";
     exit;
 }
+
+

@@ -178,3 +178,4 @@ unset($_SESSION['old_nombre']);
 unset($_SESSION['old_correo']);
 unset($_SESSION['old_admin']);
 ?>
+

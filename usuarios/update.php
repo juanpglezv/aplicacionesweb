@@ -48,3 +48,4 @@ if ($stmt->execute()) {
     header("Location: editar.php?id=" . $usuario_id . "&error=Error al actualizar el usuario: " . $stmt->error);
 }
 ?>
+

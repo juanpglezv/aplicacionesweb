@@ -93,3 +93,4 @@ $conexion->close();
 header("Location: nuevo.php");
 exit;
 ?>
+

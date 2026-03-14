@@ -523,3 +523,4 @@ if (urlParams.get('deleted') === '1') {
     <?php unset($_SESSION['mensaje']); ?>
 <?php endif; ?>
 </script>
+
