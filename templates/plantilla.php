@@ -171,53 +171,28 @@ $userName = $_SESSION['user_name'] ?? 'Usuario';
 <body>
     <!-- Header -->
      <?php 
-     include ('../templates/header.php'); 
+     include 'header.php'; 
      ?>
 
     <!-- Container Principal -->
     <div class="container">
         <!-- Sidebar -->
              <?php 
-             include ('../templates/sidebar.php'); 
+             include 'sidebar.php'; 
              ?>
 
         <!-- Contenido Principal -->
         <main class="main-content">
             <div class="content-area">
-                 <h1> Registro de clientes </h1>
-
-    <form action="guardar.php" method="post">
-    <table border="1">
-        <tr> 
-            <td>Nombre:</td>
-            <td><input type="text" name="nombre" id="nombre"></td>
-        </tr>
-        <tr>
-           <td>Domicilio:</td>
-            <td><input type="text" name="domicilio" id="domicilio"></td>
-        </tr>
-        <tr>
-           <td>Giro:</td>
-            <td><input type="text" name="giro" id="giro"></td>
-        </tr>
-        <tr>
-           <td>Razon socal:</td>
-            <td><input type="text" name="razon_social" id="razon_social"></td>
-        </tr>
-        <tr>
-            <td> <colspan="2" style="text-align: center;">
-                <input type="submit" value="Guardar cliente">
-            </td>
-        </tr>
-    </table>
-    </form>
+                <h2>Bienvenido al Dashboard</h2>
+                <p>Selecciona una opción del menú lateral para comenzar.</p>
             </div>
         </main>
     </div>
 
     <!-- Footer -->
         <?php 
-        include ('../templates/footer.php'); 
+        include 'footer.php'; 
         ?>
 </body>
 </html>

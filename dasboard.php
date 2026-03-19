@@ -1,134 +1,198 @@
 <?php
+// dashboard.php
 session_start();
 
-// Verificar si el usuario inició sesión
- if (!isset($_SESSION["usuario"])) {
-    header("Location: ../login.php");
-     exit();
- }
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit;
+}
 
- $nombre_usuario = $_SESSION["usuario"];
+$userName = $_SESSION['user_name'] ?? 'Usuario';
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Mi Empresa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
     <style>
-        /* Estilos generales */
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
             display: flex;
-            background-color: #f0f2f5;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* Header */
-        header {
-            background: linear-gradient(90deg, #004080, #0066cc);
+        .header {
+            background-color: #2c3e50;
             color: white;
-            padding: 20px;
-            text-align: center;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 60px; /* 🔹 Línea nueva: altura fija */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            z-index: 1000;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Menú lateral */
-        nav {
-            background: #1c1c1c;
-            width: 220px;
-            height: 100vh;
-            padding-top: 80px; /* 🔹 Línea ajustada: coincide con altura del header */
-            position: fixed;
-            left: 0;
-            top: 0;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        .header h1 {
+            font-size: 24px;
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
-        nav ul li {
-            padding: 15px;
-            border-bottom: 1px solid #333;
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        nav ul li a {
+
+        .user-info span {
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
             text-decoration: none;
-            color: #ddd;
-            display: block;
-            transition: background 0.3s, color 0.3s;
-        }
-        nav ul li a:hover {
-            background: #0066cc;
-            color: #fff;
-            border-radius: 5px;
-            padding-left: 10px;
+            transition: background-color 0.3s;
         }
 
-        /* Contenido principal */
-        main {
-            margin-left: 240px;   /* 🔹 Línea ajustada: más espacio para menú */
-            margin-top: 100px;    /* 🔹 Línea ajustada: más espacio para header */
-            padding: 30px;
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Container Principal */
+        .container {
+            display: flex;
             flex: 1;
-            min-height: calc(100vh - 140px); /* 🔹 Línea nueva: evita recorte con footer */
-            box-sizing: border-box;
         }
-        main h2 {
-            color: #004080;
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #34495e;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
-        main p {
-            color: #333;
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background-color 0.3s, padding-left 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar a:hover {
+            background-color: #2c3e50;
+            border-left-color: #3498db;
+            padding-left: 25px;
+        }
+
+        .sidebar a.active {
+            background-color: #2980b9;
+            border-left-color: #3498db;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background-color: #f5f5f5;
+        }
+
+        .content-area {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-height: 400px;
+        }
+
+        .content-area h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
         }
 
         /* Footer */
-        footer {
-            background: #004080;
+        .footer {
+            background-color: #2c3e50;
             color: white;
             text-align: center;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+            padding: 20px;
+            margin-top: auto;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <h1>Mi Empresa S.A. - Panel Administrativo</h1>
-    </header>
+     <?php 
+     include ('templates/header.php'); 
+     ?>
 
-    <!-- Menú lateral -->
-    <nav>
-        <ul>
-            <li><a href="#">🏠 Inicio</a></li>
-            <li><a href="#">👥 Clientes</a></li>
-            <li><a href="#">👤 Usuarios</a></li>
-            <li><a href="#">📊 Reportes</a></li>
-            <li><a href="#">⚙️ Configuración</a></li>
-        </ul>
-    </nav>
+    <!-- Container Principal -->
+    <div class="container">
+        <!-- Sidebar -->
+             <?php 
+             include ('templates/sidebar.php'); 
+             ?>
 
-    <!-- Contenido principal -->
-    <main>
-        <h2>Bienvenido <?php echo $_SESSION["usuario"]; ?> 👋</h2>
-        <p>Este es tu panel principal. Aquí podrás gestionar clientes, usuarios y visualizar reportes.</p>
-    </main>
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <div class="content-area">
+                <h2>Bienvenido al Dashboard</h2>
+                <p>Selecciona una opción del menú lateral para comenzar.</p>
+            </div>
+        </main>
+    </div>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Mi Empresa S.A. - Todos los derechos reservados</p>
-    </footer>
+        <?php 
+        include ('templates/footer.php'); 
+        ?>
 </body>
 </html>
-
-
-

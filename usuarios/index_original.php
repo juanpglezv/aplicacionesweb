@@ -1,15 +1,10 @@
 <?php
-// dashboard.php
 session_start();
-
-// Verificar si el usuario está autenticado
-if (!isset($_SESSION['usuario'])) {
-    header('Location: login.php');
+// Valida que el usuario este inicado
+if (!isset($_SESSION["usuario"])) {
+    header("Location: ../login.php");
     exit;
 }
-
-$userName = $_SESSION['user_name'] ?? 'Usuario';
-
 
 require_once '../lib/conn.php';
 
@@ -24,159 +19,40 @@ $usuarios = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Listado de Usuarios</title>
+    <title>Listado de Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: #f8f9fa;
+            padding: 20px;
         }
-
-        /* Header */
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px 30px;
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 15px;
+        }
+        .header-section {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
-
-        .header h1 {
-            font-size: 24px;
-        }
-
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-info span {
-            font-weight: 500;
-        }
-
-        .logout-btn {
-            background-color: #e74c3c;
+        .btn-nuevo {
+            background-color: #28a745;
             color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s;
         }
-
-        .logout-btn:hover {
-            background-color: #c0392b;
-        }
-
-        /* Container Principal */
-        .container {
-            display: flex;
-            flex: 1;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: #34495e;
+        .btn-nuevo:hover {
+            background-color: #218838;
             color: white;
-            padding: 20px 0;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar li {
-            margin: 0;
-        }
-
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 15px 20px;
-            transition: background-color 0.3s, padding-left 0.3s;
-            border-left: 4px solid transparent;
-        }
-
-        .sidebar a:hover {
-            background-color: #2c3e50;
-            border-left-color: #3498db;
-            padding-left: 25px;
-        }
-
-        .sidebar a.active {
-            background-color: #2980b9;
-            border-left-color: #3498db;
-        }
-
-        /* Contenido Principal */
-        .main-content {
-            flex: 1;
-            padding: 30px;
-            background-color: #f5f5f5;
-        }
-
-        .content-area {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            min-height: 400px;
-        }
-
-        .content-area h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: auto;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-        }
-
-        .footer p {
-            margin: 0;
-            font-size: 14px;
-        }
-
-        .footer a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        
         .tabla-usuarios {
             font-size: 0.95rem;
         }
@@ -199,24 +75,14 @@ $usuarios = $result->fetch_all(MYSQLI_ASSOC);
     </style>
 </head>
 <body>
-    <!-- Header -->
-     <?php 
-     include ('../templates/header.php'); 
-     ?>
-
-    <!-- Container Principal -->
     <div class="container">
-        <!-- Sidebar -->
-             <?php 
-             include ('../templates/sidebar.php'); 
-             ?>
+        <div class="header-section">
+            <h1><i class="fas fa-users"></i> Listado de Usuarios</h1>
+            <a href="nuevo.php" class="btn btn-nuevo">
+                <i class="fas fa-plus"></i> Nuevo Usuario
+            </a>
+        </div>
 
-        <!-- Contenido Principal -->
-        <main class="main-content">
-            <div class="content-area">
-                <h2>Listado de usuarios</h2>
-
-                
         <?php if (isset($_SESSION['mensaje'])): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php echo htmlspecialchars($_SESSION['mensaje']); ?>
@@ -281,14 +147,6 @@ $usuarios = $result->fetch_all(MYSQLI_ASSOC);
         <?php endif; ?>
     </div>
 
-            </div>
-        </main>
-    </div>
-
-    <!-- Footer -->
-        <?php 
-        include ('../templates/footer.php'); 
-        ?>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
