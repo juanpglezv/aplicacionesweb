@@ -1,37 +1,14 @@
 <?php
-$userName = $_SESSION['user_name'] ?? 'Usuario';
-
+// dashboard.php
 session_start();
+
 // Verificar si el usuario está autenticado
-//if (!isset($_SESSION["usuario"])) {
-//    header("Location: ../login.php");
- //   exit();
-//}
-
-// Obtener ID del usuario desde GET
-$usuario_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-// Validar si el ID viene vacío
-if ($usuario_id <= 0) {
-    header("Location: index.php");
-    exit();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit;
 }
 
-// Conexión a la base de datos
-include("../lib/conn.php");
-
-// Obtener datos del usuario con prepared statement
-$stmt = $conexion->prepare("SELECT * FROM usuarios WHERE id = ?");
-$stmt->bind_param("i", $usuario_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$usuario = $result->fetch_assoc();
-
-// Validar si el usuario existe
-if (!$usuario) {
-    header("Location: index.php");
-    exit();
-}
+$userName = $_SESSION['user_name'] ?? 'Usuario';
 ?>
 
 <!DOCTYPE html>
@@ -189,49 +166,6 @@ if (!$usuario) {
         .footer a:hover {
             text-decoration: underline;
         }
-              .form-container {
-            border: 2px solid #000;
-            padding: 30px;
-            width: 400px;
-            box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #000;
-            padding-bottom: 10px;
-        }
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #000;
-            margin-top: 5px;
-            background-color: #f9f9f9;
-        }
-        input[readonly], input[disabled] {
-            color: #555;
-        }
-        input[type="checkbox"] {
-            margin-top: 10px;
-        }
-        button {
-            margin-top: 20px;
-            width: 100%;
-            padding: 10px;
-            background-color: #000;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        button:hover {
-            background-color: #333;
-        }
     </style>
 </head>
 <body>
@@ -250,29 +184,39 @@ if (!$usuario) {
         <!-- Contenido Principal -->
         <main class="main-content">
             <div class="content-area">
-                <h2>Detalle del Usuario</h2>
-    <input type="hidden" id="id" name="id" 
+                <h2>Bienvenido al Dashboard</h2>
+                
+                 <form method="POST" action="update.php">
+            
+            <input type="hidden" id="id" name="id" 
              value="<?= htmlspecialchars($usuario_id) ?>" required>
              
-        <div class="grupo">
-            <label for="nombre">Nombre</label>
-            <input type="text" value="<?= htmlspecialchars($usuario['nombre']) ?>" required disabled>
-        </div>
+            <div class="grupo">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>" required>
+            </div>
 
-        <div class="grupo">
-            <label for="correo">Correo Electrónico</label>
-            <input type="email" value="<?= htmlspecialchars($usuario['correo']) ?>" required disabled>
-        </div>
+            <div class="grupo">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" id="correo" name="correo" value="<?= htmlspecialchars($usuario['correo']) ?>" required>
+            </div>
 
-        <div class="grupo checkbox-grupo">
-            <input type="checkbox" <?= $usuario['es_admin'] ? 'checked' : '' ?> disabled>
-            <label for="es_admin">Es Administrador</label>
-        </div>
+            <div class="grupo">
+                <label for="password">Contraseña (dejar vacío para no cambiar)</label>
+                <input type="password" id="password" name="password" placeholder="Nueva contraseña (opcional)">
+            </div>
 
-        <div class="botones">
-            <button type="button" class="btn-cancelar" onclick="window.location='index.php'">Regresar</button>
-        </div>
+            <div class="grupo checkbox-grupo">
+                <input type="checkbox" id="es_admin" name="es_admin" <?= $usuario['es_admin'] ? 'checked' : '' ?>>
+                <label for="es_admin">Es Administrador</label>
+            </div>
 
+            <div class="botones">
+                <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                <button type="button" class="btn-cancelar" onclick="window.location='listar.php'">Cancelar</button>
+            </div>
+        </form>
+                
             </div>
         </main>
     </div>

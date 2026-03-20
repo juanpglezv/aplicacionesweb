@@ -21,7 +21,7 @@ if (empty($nombre) || empty($correo) || empty($usuario_id)) {
 // Conexión a la base de datos
 include '../lib/conn.php';
 
-// 🔥 PRIMERO: Obtener la contraseña actual del usuario
+//  PRIMERO: Obtener la contraseña actual del usuario
 $stmt_check = $conexion->prepare("SELECT password FROM usuarios WHERE id = ?");
 $stmt_check->bind_param("i", $usuario_id);
 $stmt_check->execute();
@@ -29,7 +29,7 @@ $result_check = $stmt_check->get_result();
 $usuario_actual = $result_check->fetch_assoc();
 $password_actual = $usuario_actual['password'];
 
-// 🔥 COMPARAR: Si la contraseña enviada es IGUAL a la actual, no la actualizamos
+//  COMPARAR: Si la contraseña enviada es IGUAL a la actual, no la actualizamos
 if ($password === $password_actual) {
     // La contraseña no cambió, actualizar solo nombre, correo y admin
     $stmt = $conexion->prepare("UPDATE usuarios SET nombre = ?, correo = ?, es_admin = ? WHERE id = ?");

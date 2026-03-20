@@ -151,45 +151,29 @@ if (!$usuario) {
 </head>
 <body>
     <div class="contenedor">
-        <h1>Editar Usuario</h1>
+        <h1>Detalle Usuario</h1>
 
-        <?php /*if ($mensaje): ?>
-            <div class="mensaje <?= $tipo_mensaje ?>">
-                <?= htmlspecialchars($mensaje) ?>
-            </div>
-        <?php endif; */ ?>
-
-        <form method="POST" action="update.php">
-            
             <input type="hidden" id="id" name="id" 
              value="<?= htmlspecialchars($usuario_id) ?>" required>
              
-            <div class="grupo">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>" required>
-            </div>
+        <div class="grupo">
+            <label for="nombre">Nombre</label>
+            <input type="text" value="<?= htmlspecialchars($usuario['nombre']) ?>" required disabled>
+        </div>
 
-            <div class="grupo">
-                <label for="correo">Correo Electrónico</label>
-                <input type="email" id="correo" name="correo" value="<?= htmlspecialchars($usuario['correo']) ?>" required>
-            </div>
+        <div class="grupo">
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" value="<?= htmlspecialchars($usuario['correo']) ?>" required disabled>
+        </div>
 
-            <div class="grupo">
-                <label for="password">Contraseña (dejar vacío para no cambiar)</label>
-                <input type="password" id="password" name="password" placeholder="Nueva contraseña (opcional)">
-            </div>
+        <div class="grupo checkbox-grupo">
+            <input type="checkbox" <?= $usuario['es_admin'] ? 'checked' : '' ?> disabled>
+            <label for="es_admin">Es Administrador</label>
+        </div>
 
-            <div class="grupo checkbox-grupo">
-                <input type="checkbox" id="es_admin" name="es_admin" <?= $usuario['es_admin'] ? 'checked' : '' ?>>
-                <label for="es_admin">Es Administrador</label>
-            </div>
-
-            <div class="botones">
-                <button type="submit" class="btn-guardar">Guardar Cambios</button>
-                <button type="button" class="btn-cancelar" onclick="window.location='index.php'">Cancelar</button>
-            </div>
-        </form>
+        <div class="botones">
+            <button type="button" class="btn-cancelar" onclick="window.location='index.php'">Regresar</button>
+        </div>
     </div>
 </body>
 </html>
-

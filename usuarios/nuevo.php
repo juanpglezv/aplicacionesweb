@@ -1,181 +1,224 @@
 <?php
 session_start();
 
-// Verificar si el usuario inició sesión
 if (!isset($_SESSION["usuario"])) {
     header("Location: ../login.php");
     exit;
 }
-?>
 
+if (isset($_GET['error'])) {
+    $error = urldecode($_GET['error']);
+}
+if (isset($_GET['exito'])) {
+    $exito = urldecode($_GET['exito']);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro de Nuevo Usuario</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            padding: 20px;
         }
-        .form-container {
-            background-color: #ffffff;
-            padding: 30px;
+
+        .container {
+            background-color: white;
             border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-            width: 350px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
         }
-        .form-container h2 {
+
+        h1 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
             text-align: center;
-            color: #1e3c72;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
+
         label {
             display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #2a5298;
+            color: #334155;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
+
         input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 12px 15px;
+            border: 2px solid #e0e7ff;
             border-radius: 6px;
-            outline: none;
-            transition: border-color 0.3s;
-            box-sizing: border-box;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
+
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus {
-            border-color: #1e3c72;
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
+
         .checkbox-group {
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 15px;
+            background-color: #f0f4ff;
+            border-radius: 6px;
+            margin-bottom: 20px;
         }
-        .checkbox-group input {
-            width: auto;
-            margin: 0;
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #667eea;
         }
+
         .checkbox-group label {
             margin: 0;
+            cursor: pointer;
+            color: #1e3a8a;
+            font-weight: 500;
         }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .alert-success {
+            background-color: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
         button {
             width: 100%;
             padding: 12px;
-            background-color: #1e3c72;
-            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             border: none;
             border-radius: 6px;
             font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
         }
+
         button:hover {
-            background-color: #2a5298;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
-        .mensaje-error {
-            color: #d32f2f;
-            background-color: #ffebee;
-            padding: 10px;
-            border-radius: 6px;
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .login-link {
             text-align: center;
-            margin-bottom: 20px;
+            color: #64748b;
             font-size: 14px;
         }
-        .mensaje-exito {
-            color: #388e3c;
-            background-color: #e8f5e8;
-            padding: 10px;
-            border-radius: 6px;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .volver-link {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: #666;
+
+        .login-link a {
+            color: #667eea;
             text-decoration: none;
-            font-size: 14px;
+            font-weight: 600;
         }
-        .volver-link:hover {
-            color: #1e3c72;
+
+        .login-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Nuevo Usuario</h2>
-        
-        <?php
-        // Mostrar mensajes de error
-        if (isset($_SESSION['error'])) {
-            echo "<div class='mensaje-error'>❌ " . htmlspecialchars($_SESSION['error']) . "</div>";
-            unset($_SESSION['error']);
-        }
-        
-        // Mostrar mensajes de éxito
-        if (isset($_SESSION['exito'])) {
-            echo "<div class='mensaje-exito'>✅ " . htmlspecialchars($_SESSION['exito']) . "</div>";
-            unset($_SESSION['exito']);
-        }
-        ?>
-        
-        <form action="crear.php" method="POST">
+    <div class="container">
+        <h1>Registro de Usuarios</h1>
+        <p class="subtitle">Crea una nueva cuenta</p>
+
+        <?php if (isset($error)): ?>
+            <div class="alert alert-error"><?php echo $error; ?></div>
+        <?php endif; ?>
+
+        <?php if (isset($exito)): ?>
+            <div class="alert alert-success"><?php echo $exito; ?></div>
+        <?php endif; ?>
+
+        <form method="POST" action="crear.php">
             <div class="form-group">
                 <label for="nombre">Nombre de Usuario</label>
-                <input type="text" id="nombre" name="nombre" required 
-                       value="<?= isset($_SESSION['old_nombre']) ? htmlspecialchars($_SESSION['old_nombre']) : '' ?>">
+                <input type="text" id="nombre" name="nombre" required placeholder="Ingrese su nombre">
             </div>
-            
+
             <div class="form-group">
                 <label for="correo">Correo Electrónico</label>
-                <input type="email" id="correo" name="correo" required
-                       value="<?= isset($_SESSION['old_correo']) ? htmlspecialchars($_SESSION['old_correo']) : '' ?>">
+                <input type="email" id="correo" name="correo" required placeholder="Ingrese su correo">
             </div>
-            
+
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required placeholder="Mínimo 6 caracteres">
             </div>
-            
+
             <div class="form-group">
-                <label for="confirmar">Confirmar Contraseña</label>
-                <input type="password" id="confirmar" name="confirmar" required>
+                <label for="confirm_password">Confirmar Contraseña</label>
+                <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirme su contraseña">
             </div>
-            
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="admin" name="admin" 
-                       <?= isset($_SESSION['old_admin']) ? 'checked' : '' ?>>
-                <label for="admin">Usuario Administrador</label>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="es_admin" name="es_admin">
+                <label for="es_admin">¿Es administrador?</label>
             </div>
-            
-            <button type="submit">Registrar Usuario</button>
+
+            <button type="submit">Registrarse</button>
         </form>
-        
-        <a href="index.php" class="volver-link">← Volver a la lista de usuarios</a>
+
+        <div class="login-link">
+            ¿Ya tienes cuenta? <a href="#">Inicia sesión aquí</a>
+        </div>
     </div>
 </body>
 </html>
-<?php
-// Limpiar datos antiguos después de mostrarlos
-unset($_SESSION['old_nombre']);
-unset($_SESSION['old_correo']);
-unset($_SESSION['old_admin']);
-?>
-
