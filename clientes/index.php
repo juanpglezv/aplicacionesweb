@@ -3,12 +3,20 @@
 session_start();
 
 // Verificar si el usuario está autenticado
-if (!isset($_SESSION['usuario'])) {
-    header('Location: login.php');
-    exit;
-}
+//if (!isset($_SESSION['clientes'])) {
+//    header('Location: login.php');
+//    exit;
+//}
 
-$userName = $_SESSION['user_name'] ?? 'Usuario';
+$userName = $_SESSION['user_name'] ?? 'Cliente';
+
+
+require_once '../lib/conn.php';
+
+// Obtener usuarios de la base de datos
+$sql = "SELECT * FROM clientes ORDER BY id DESC";
+$result = $conexion->query($sql);
+$clientes = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +24,10 @@ $userName = $_SESSION['user_name'] ?? 'Usuario';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+     <title>Listado de Clientes</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        
         * {
             margin: 0;
             padding: 0;
@@ -166,6 +176,26 @@ $userName = $_SESSION['user_name'] ?? 'Usuario';
         .footer a:hover {
             text-decoration: underline;
         }
+        
+        .tabla-usuarios {
+            font-size: 0.95rem;
+        }
+        .tabla-usuarios thead {
+            background-color: #007bff;
+            color: white;
+        }
+        .tabla-usuarios tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+        .acciones {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+        .btn-sm {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
@@ -184,33 +214,75 @@ $userName = $_SESSION['user_name'] ?? 'Usuario';
         <!-- Contenido Principal -->
         <main class="main-content">
             <div class="content-area">
-                 <h1> Registro de clientes </h1>
+                <h2>Listado de clientes</h2>
 
-    <form action="guardar.php" method="post">
-    <table border="1">
-        <tr> 
-            <td>Nombre:</td>
-            <td><input type="text" name="nombre" id="nombre"></td>
-        </tr>
-        <tr>
-           <td>Domicilio:</td>
-            <td><input type="text" name="domicilio" id="domicilio"></td>
-        </tr>
-        <tr>
-           <td>Giro:</td>
-            <td><input type="text" name="giro" id="giro"></td>
-        </tr>
-        <tr>
-           <td>Razon socal:</td>
-            <td><input type="text" name="razon_social" id="razon_social"></td>
-        </tr>
-        <tr>
-            <td> <colspan="2" style="text-align: center;">
-                <input type="submit" value="Guardar cliente">
-            </td>
-        </tr>
-    </table>
-    </form>
+                
+        <?php if (isset($_SESSION['mensaje'])): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?php echo htmlspecialchars($_SESSION['mensaje']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; 
+            unset($_SESSION['mensaje']);
+        ?>
+
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo htmlspecialchars($_GET['error']); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+
+        <?php if (count($clientes) > 0): ?>
+            <div class="table-responsive">
+                <table class="table table-hover tabla-usuarios">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Domicilio</th>
+                            <th>Giro</th>
+                            <th>Razon Social</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($clientes as $cliente): ?>
+                            <tr>
+                                <td><?php echo $cliente['id']; ?></td>
+                                <td><?php echo htmlspecialchars($cliente['nombre']); ?></td>
+                                <td><?php echo htmlspecialchars($cliente['domicilio']); ?></td>
+                                <td><?php echo htmlspecialchars($cliente['giro']); ?></td>
+                                <td><?php echo htmlspecialchars($cliente['razon_social']); ?></td>
+                                <td>
+                                    <div class="acciones">
+                                        <a href="ver.php?id=<?php echo $cliente['id']; ?>" class="btn btn-info btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="editar.php?id=<?php echo $cliente['id']; ?>" class="btn btn-warning btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <form method="POST" action="delete.php" 
+                                        onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?');">
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                ><i class="fas fa-trash"></i></button>
+                                            <input id="id" name="id" type="hidden" 
+                                                value="<?php echo $cliente['id']; ?>">
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <div class="alert alert-info text-center">
+                <i class="fas fa-info-circle"></i> No hay clientes registrados
+            </div>
+        <?php endif; ?>
+    </div>
+
             </div>
         </main>
     </div>
@@ -219,5 +291,6 @@ $userName = $_SESSION['user_name'] ?? 'Usuario';
         <?php 
         include ('../templates/footer.php'); 
         ?>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
