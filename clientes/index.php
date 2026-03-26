@@ -3,10 +3,10 @@
 session_start();
 
 // Verificar si el usuario está autenticado
-//if (!isset($_SESSION['clientes'])) {
-//    header('Location: login.php');
-//    exit;
-//}
+if (!isset($_SESSION['clientes'])) {
+    header('Location: ../login.php');
+    exit;
+}
 
 $userName = $_SESSION['user_name'] ?? 'Cliente';
 
