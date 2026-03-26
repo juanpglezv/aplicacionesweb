@@ -195,4 +195,5 @@ $userName = $_SESSION['user_name'] ?? 'Usuario';
         include ('templates/footer.php'); 
         ?>
 </body>
+
 </html>
