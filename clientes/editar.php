@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Verificar si el cliente está autenticado
-if (!isset($_SESSION['clientes'])) {
+if (!isset($_SESSION['usuario'])) {
     header('Location: ../login.php');
     exit;
 }

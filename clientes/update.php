@@ -12,7 +12,7 @@ $giro = $_POST['giro'];
 $razon_social = $_POST['razon_social'];
 
 // Cambiar esta línea en update.php:
-$giro = isset($_POST['giro']) ? 1 : 0; // Ahora busca 'giro'
+$giro = $_POST['giro']; // Ahora busca 'giro'
 
 // Validamos que los campos no estén vacíos
 if (empty($nombre) || empty($domicilio) ||empty($giro) ||empty($razon_social) ||empty($cliente_id)) {
