@@ -1,7 +1,4 @@
 <?php
-session_start();
-include("lib/conn.php");
-
 //Valida que el formulario se envie por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Tomar los datos tipo post del formulario
@@ -13,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
     // conexion a la base de datos
-    include("lib/conn.php");
+    include "lib/conn.php";
     // encriptar la contraseña usando md5
     $password = md5($password);
     // Consulta para verificar el usuario usando prepared statements para evitar inyecciones SQL

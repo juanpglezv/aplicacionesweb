@@ -1,10 +1,10 @@
 <?php
 session_start();
 // Verificar si el cliente está autenticado
-//if (!isset($_SESSION['clientes'])) {
-//    header('Location: ../login.php');
-//    exit;
-//}
+if (!isset($_SESSION['clientes'])) {
+    header('Location: ../login.php');
+    exit;
+}
 
 // Obtener ID del cliente desde GET
 $cliente_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;

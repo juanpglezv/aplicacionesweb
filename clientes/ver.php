@@ -3,10 +3,10 @@ $userName = $_SESSION['cliente_name'] ?? 'Clientes';
 
 session_start();
 // Verificar si el usuario está autenticado
-//if (!isset($_SESSION["usuario"])) {
-//    header("Location: ../login.php");
- //   exit();
-//}
+if (!isset($_SESSION["usuario"])) {
+    header("Location: ../login.php");
+    exit();
+}
 
 // Obtener ID del usuario desde GET
 $cliente_id = isset($_GET['id']) ? intval($_GET['id']) : 0;

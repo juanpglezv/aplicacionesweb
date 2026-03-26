@@ -1,3 +1,4 @@
+
 <?php
 // Variables de conexion a la base de datos
     $server = "localhost";
@@ -12,6 +13,5 @@
     }else{
         //echo "Conexion exitosa";
     }
-    
-    ?>
 
+?>
