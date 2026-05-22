@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPIAS — Ingeniería Ambiental y Sanitaria | Tepatitlán, Jalisco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-oscuro:  #0b1f3a;
+            --azul-medio:   #123458;
+            --azul-agua:    #1e6fa8;
+            --azul-claro:   #3a9fd6;
+            --verde-agua:   #2aa198;
+            --verde-claro:  #4ecdc4;
+            --acento:       #00d4aa;
+            --acento2:      #17a2b8;
+            --blanco:       #ffffff;
+            --gris-claro:   #f4f8fb;
+            --gris-texto:   #4a5568;
+            --sombra:       0 8px 32px rgba(11,31,58,0.13);
+            --sombra-lg:    0 20px 60px rgba(11,31,58,0.18);
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #2d3748;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════
+           NAV
+        ══════════════════════════════════════ */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(11,31,58,0.97);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+        }
+
+        nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 30px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav-brand img {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--acento);
+        }
+
+        .nav-brand-text .brand-name {
+            font-size: 20px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 2px;
+            display: block;
+            line-height: 1;
+        }
+
+        .nav-brand-text .brand-sub {
+            font-size: 10px;
+            color: var(--acento);
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.80);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .btn-login {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, var(--acento), var(--verde-agua));
+            color: var(--azul-oscuro) !important;
+            font-weight: 800 !important;
+            padding: 9px 20px !important;
+            border-radius: 25px !important;
+            font-size: 13px !important;
+            transition: all 0.25s !important;
+            box-shadow: 0 4px 15px rgba(0,212,170,0.35);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(0,212,170,0.5) !important;
+            background: linear-gradient(135deg, #00edc0, #2aa198) !important;
+        }
+
+        /* ══════════════════════════════════════
+           HERO
+        ══════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(155deg, rgba(11,31,58,0.92) 0%, rgba(18,52,88,0.82) 50%, rgba(30,111,168,0.75) 100%),
+                url('historia.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 60% 50%, rgba(0,212,170,0.08) 0%, transparent 65%);
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 820px; }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0,212,170,0.15);
+            border: 1px solid rgba(0,212,170,0.4);
+            color: var(--acento);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 70px);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.08;
+            margin-bottom: 24px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span { color: var(--acento); }
+
+        .hero p {
+            font-size: clamp(15px, 2vw, 19px);
+            color: rgba(255,255,255,0.82);
+            max-width: 600px;
+            margin: 0 auto 42px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--acento), var(--verde-agua));
+            color: var(--azul-oscuro);
+            font-weight: 800;
+            padding: 15px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 15px;
+            box-shadow: 0 6px 25px rgba(0,212,170,0.4);
+            transition: all 0.3s;
+        }
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,212,170,0.55);
+        }
+
+        .btn-hero-secondary {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            font-weight: 700;
+            padding: 15px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 15px;
+            border: 2px solid rgba(255,255,255,0.25);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .btn-hero-secondary:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-3px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.4);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .hero-scroll span {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            display: block;
+            animation: scrollLine 2s ease infinite;
+        }
+        @keyframes scrollLine {
+            0%,100% { opacity: 0.3; transform: scaleY(0.7); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* ══════════════════════════════════════
+           STATS BAR
+        ══════════════════════════════════════ */
+        .stats-bar {
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-medio));
+            padding: 32px 20px;
+        }
+
+        .stats-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item { padding: 12px; }
+
+        .stat-num {
+            font-size: 38px;
+            font-weight: 900;
+            color: var(--acento);
+            line-height: 1;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.65);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* ══════════════════════════════════════
+           APIS EN TIEMPO REAL
+        ══════════════════════════════════════ */
+        .apis-section {
+            background: linear-gradient(135deg, #0d2137 0%, #0b3d4f 100%);
+            padding: 70px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--acento);
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(26px, 4vw, 40px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 14px;
+        }
+
+        .section-header p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.55);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .apis-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .api-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 36px 32px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .api-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+
+        .api-card.clima::before { background: linear-gradient(90deg, var(--azul-claro), var(--verde-claro)); }
+        .api-card.dolar::before { background: linear-gradient(90deg, #f6d365, #fda085); }
+
+        .api-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .api-icon {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .api-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 16px;
+        }
+
+        .api-valor {
+            font-size: 52px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .api-card.clima .api-valor  { color: var(--verde-claro); }
+        .api-card.dolar .api-valor  { color: #fda085; }
+
+        .api-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            margin-top: 4px;
+        }
+
+        .api-loading {
+            display: inline-block;
+            width: 28px; height: 28px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: var(--acento);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ══════════════════════════════════════
+           SECCIONES GENERALES
+        ══════════════════════════════════════ */
+        .section-light {
+            background: var(--gris-claro);
+            padding: 90px 20px;
+        }
+
+        .section-white {
+            background: #fff;
+            padding: 90px 20px;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; }
+
+        .section-title-light {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title-light .tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--azul-agua);
+            margin-bottom: 12px;
+            background: rgba(30,111,168,0.1);
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+
+        .section-title-light h2 {
+            font-size: clamp(26px, 4vw, 40px);
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            margin-bottom: 14px;
+        }
+
+        .section-title-light p {
+            font-size: 15px;
+            color: var(--gris-texto);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ══════════════════════════════════════
+           SERVICIOS
+        ══════════════════════════════════════ */
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+
+        .servicio-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: all 0.3s;
+            border: 1px solid rgba(30,111,168,0.06);
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-lg);
+        }
+
+        .servicio-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .servicio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .servicio-card:hover .servicio-img img {
+            transform: scale(1.06);
+        }
+
+        .servicio-body {
+            padding: 28px;
+        }
+
+        .servicio-body .tag {
+            display: inline-block;
+            background: rgba(30,111,168,0.08);
+            color: var(--azul-agua);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .servicio-body h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .servicio-body p {
+            font-size: 14px;
+            color: var(--gris-texto);
+            line-height: 1.8;
+        }
+
+        /* ══════════════════════════════════════
+           HISTORIA
+        ══════════════════════════════════════ */
+        .historia-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .historia-img-wrap {
+            position: relative;
+        }
+
+        .historia-img-wrap img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--sombra-lg);
+        }
+
+        .historia-img-wrap::before {
+            content: '';
+            position: absolute;
+            top: -20px; left: -20px;
+            width: 60%; height: 60%;
+            background: linear-gradient(135deg, var(--acento), var(--azul-agua));
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .historia-text .tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--azul-agua);
+            background: rgba(30,111,168,0.1);
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .historia-text h2 {
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 900;
+            color: var(--azul-oscuro);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .historia-text h2 span { color: var(--azul-agua); }
+
+        .historia-text p {
+            font-size: 15px;
+            color: var(--gris-texto);
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .historia-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .feat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--azul-oscuro);
+        }
+
+        .feat-item .dot {
+            width: 8px; height: 8px;
+            background: var(--acento);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ══════════════════════════════════════
+           UBICACIÓN
+        ══════════════════════════════════════ */
+        .ubicacion-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .mapa-wrap {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--sombra-lg);
+            height: 420px;
+        }
+
+        .mapa-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .ubicacion-info h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            margin-bottom: 28px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--azul-agua), var(--verde-agua));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .info-text strong {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--azul-agua);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-text span {
+            font-size: 14px;
+            color: var(--gris-texto);
+            line-height: 1.7;
+        }
+
+        /* ══════════════════════════════════════
+           CONTACTO
+        ══════════════════════════════════════ */
+        .contacto-form-wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: var(--sombra-lg);
+            border: 1px solid rgba(30,111,168,0.08);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--azul-agua);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid #e8f0f7;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--azul-oscuro);
+            background: var(--gris-claro);
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--azul-agua);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(30,111,168,0.08);
+        }
+
+        .form-group textarea { resize: vertical; min-height: 130px; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--azul-agua), var(--verde-agua));
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #1a5d96, #248f88);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30,111,168,0.35);
+        }
+
+        /* ══════════════════════════════════════
+           ZONA PRIVADA
+        ══════════════════════════════════════ */
+        .zona-privada-nav {
+            background: var(--azul-oscuro);
+            padding: 16px 0;
+            position: sticky;
+            top: 72px;
+            z-index: 150;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .zona-privada-nav .inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .zona-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--acento);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tab-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .tab-btn {
+            background: rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover { background: rgba(255,255,255,0.13); color: #fff; }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--azul-agua), var(--verde-agua));
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .btn-cerrar-sesion {
+            background: rgba(231,76,60,0.15);
+            color: #ff6b6b;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid rgba(231,76,60,0.3);
+            transition: all 0.2s;
+        }
+        .btn-cerrar-sesion:hover { background: #e74c3c; color: #fff; }
+
+        /* ══════════════════════════════════════
+           CRUD CARDS (zona privada)
+        ══════════════════════════════════════ */
+        .tab-panel-section {
+            background: var(--gris-claro);
+            padding: 40px 20px;
+        }
+
+        .tab-panel-inner { max-width: 1100px; margin: 0 auto; }
+
+        .crud-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--sombra);
+            margin-bottom: 24px;
+            border: 1px solid rgba(30,111,168,0.06);
+        }
+
+        .crud-card h2 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            margin-bottom: 22px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid var(--gris-claro);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-grid label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--azul-agua);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+
+        .form-grid input,
+        .form-grid select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 2px solid #e8f0f7;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--azul-oscuro);
+            background: var(--gris-claro);
+            transition: all 0.2s;
+        }
+
+        .form-grid input:focus,
+        .form-grid select:focus {
+            outline: none;
+            border-color: var(--azul-agua);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(30,111,168,0.1);
+        }
+
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+
+        .crud-btn {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .crud-btn.primary {
+            background: linear-gradient(135deg, var(--azul-agua), var(--verde-agua));
+            color: white;
+        }
+        .crud-btn.primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+        .crud-btn.secondary {
+            background: #f0f4f8;
+            color: var(--azul-oscuro);
+        }
+        .crud-btn.secondary:hover { background: #dde5ef; }
+
+        .crud-btn.success {
+            background: rgba(30,111,168,0.1);
+            color: var(--azul-agua);
+            font-size: 12px;
+            padding: 8px 18px;
+        }
+        .crud-btn.success:hover { background: var(--azul-agua); color: #fff; }
+
+        .crud-msg {
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .crud-msg.exito { background: #e8f8f0; color: #1e6e42; padding: 10px 14px; }
+        .crud-msg.error  { background: #fef2f2; color: #c0392b; padding: 10px 14px; }
+        .crud-msg.info   { background: #e8f4fb; color: #1a3a5c; padding: 10px 14px; }
+
+        /* Tabla */
+        .crud-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .crud-table thead tr { background: var(--azul-oscuro); }
+        .crud-table thead th {
+            padding: 12px 16px;
+            text-align: left;
+            color: rgba(255,255,255,0.85);
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .crud-table thead th:first-child { border-radius: 8px 0 0 0; }
+        .crud-table thead th:last-child  { border-radius: 0 8px 0 0; }
+        .crud-table tbody tr { border-bottom: 1px solid #f0f4f8; transition: background 0.15s; }
+        .crud-table tbody tr:hover { background: #f4f8fb; }
+        .crud-table tbody td { padding: 12px 16px; color: var(--azul-oscuro); }
+        .sin-datos { text-align: center; color: #9eadbd; padding: 28px; font-style: italic; }
+
+        .btn-edit {
+            background: rgba(30,111,168,0.1);
+            color: var(--azul-agua);
+            border: none;
+            padding: 5px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 5px;
+            transition: all 0.2s;
+        }
+        .btn-edit:hover { background: var(--azul-agua); color: #fff; }
+
+        .btn-del {
+            background: rgba(231,76,60,0.1);
+            color: #e74c3c;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-del:hover { background: #e74c3c; color: #fff; }
+
+        /* ══════════════════════════════════════
+           FOOTER
+        ══════════════════════════════════════ */
+        footer {
+            background: var(--azul-oscuro);
+            padding: 60px 20px 30px;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 30px;
+        }
+
+        .footer-brand img {
+            width: 50px; height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--acento);
+            margin-bottom: 16px;
+        }
+
+        .footer-brand h3 {
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.8;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--acento);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 10px; }
+
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.55);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+        .footer-col ul li a:hover { color: var(--acento); }
+
+        .redes-sociales {
+            display: flex;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .red-social {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .red-social:hover { background: rgba(0,212,170,0.1); border-color: var(--acento); color: var(--acento); }
+        .red-social img { width: 20px; height: 20px; }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.35);
+            font-size: 12px;
+        }
+
+        /* ══════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .historia-grid, .ubicacion-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .contacto-form-wrap { padding: 30px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header>
+    <nav>
+        <a href="#" class="nav-brand">
+            <img src="EPIAS.jpg" alt="EPIAS">
+            <div class="nav-brand-text">
+                <span class="brand-name">EPIAS</span>
+                <span class="brand-sub">Ingeniería Ambiental</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#historia">Nosotros</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="login.php" class="btn-login" id="btn-login-nav">🔐 Acceder</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ══ HERO ════════════════════════════════════════════════ -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge">📍 Tepatitlán de Morelos, Jalisco — Desde 2004</span>
+        <h1>Ingeniería que <span>protege</span><br>el agua del mañana</h1>
+        <p>Diseñamos, construimos y operamos soluciones de tratamiento de agua potable, aguas residuales y energías renovables con tecnología de vanguardia.</p>
+        <div class="hero-btns">
+            <a href="#servicios" class="btn-hero-primary">Conocer Servicios</a>
+            <a href="#contacto" class="btn-hero-secondary">Solicitar Cotización</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span></span>
+        scroll
+    </div>
+</section>
+
+<!-- ══ STATS ═══════════════════════════════════════════════ -->
+<div class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <span class="stat-num">20+</span>
+            <span class="stat-label">Años de Experiencia</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">150+</span>
+            <span class="stat-label">Proyectos Completados</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Normas NOM Certificadas</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Compromiso Ambiental</span>
+        </div>
+    </div>
+</div>
+
+<!-- ══ APIs EN TIEMPO REAL ═════════════════════════════════ -->
+<section class="apis-section" id="datos-tiempo-real">
+    <div class="section-header">
+        <span class="section-tag">📡 APIs en Tiempo Real</span>
+        <h2>Datos del entorno donde operamos</h2>
+        <p>Información actualizada en vivo de las condiciones económicas y climáticas de nuestra región.</p>
+    </div>
+    <div class="apis-grid">
+
+        <!-- Clima -->
+        <div class="api-card clima">
+            <span class="api-icon">🌤</span>
+            <div class="api-label">Clima — Tepatitlán</div>
+            <div class="api-valor" id="clima-temp"><span class="api-loading"></span></div>
+            <div class="api-sub" id="clima-desc">Obteniendo datos...</div>
+            <div class="api-sub" id="clima-humedad" style="margin-top:6px;"></div>
+        </div>
+
+        <!-- Dólar -->
+        <div class="api-card dolar">
+            <span class="api-icon">💵</span>
+            <div class="api-label">Tipo de Cambio USD → MXN</div>
+            <div class="api-valor" id="dolar-valor"><span class="api-loading"></span></div>
+            <div class="api-sub">Peso mexicano por dólar</div>
+            <div class="api-sub" id="dolar-fecha" style="margin-top:6px;"></div>
+        </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ══ SERVICIOS ═══════════════════════════════════════════ -->
+<section class="section-light" id="servicios">
+    <div class="container">
+        <div class="section-title-light">
+            <span class="tag">Lo que hacemos</span>
+            <h2>Nuestros Servicios</h2>
+            <p>Soluciones integrales de ingeniería ambiental y sanitaria adaptadas a cada proyecto.</p>
+        </div>
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="servicio-agua.jpg" alt="Potabilizadoras">
+                </div>
+                <div class="servicio-body">
+                    <span class="tag">Agua Potable</span>
+                    <h3>Plantas Potabilizadoras</h3>
+                    <p>Diseñamos y construimos plantas potabilizadoras de pozos profundos y aguas superficiales para garantizar el suministro de agua de calidad conforme a la NOM-127-SSA1-2021.</p>
+                </div>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="servicio_planeacion.jpg" alt="Biogás">
+                </div>
+                <div class="servicio-body">
+                    <span class="tag">Energía Renovable</span>
+                    <h3>Optimización de Biogás e Hidrógeno</h3>
+                    <p>Cumplimiento con normatividad mexicana e internacional: NOM-001-SEMARNAT-2021, NOM-127-SSA1-2021 y NOM-201-SSA1-2015 para aprovechamiento energético.</p>
+                </div>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-img">
+                    <img src="servicio_NOMS.jpg" alt="Tratamiento Terciario">
+                </div>
+                <div class="servicio-body">
+                    <span class="tag">Tratamiento Avanzado</span>
+                    <h3>Reutilización de Agua — Vinazas Tequila</h3>
+                    <p>Tratamiento terciario especializado para Vinazas de Tequila, Agua Tratada Municipal e Industrial, maximizando la reutilización y reduciendo el impacto ambiental.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ HISTORIA ════════════════════════════════════════════ -->
+<section class="section-white" id="historia">
+    <div class="container">
+        <div class="historia-grid">
+            <div class="historia-img-wrap">
+                <img src="historia.jpg" alt="Historia EPIAS">
+            </div>
+            <div class="historia-text">
+                <span class="tag">Nuestra Historia</span>
+                <h2>Dos décadas <span>transformando</span> el agua en Jalisco</h2>
+                <p>Empresa dedicada al tratamiento de agua, medio ambiente y energía renovable. Desde hace más de 20 años, EPIAS ha sido el aliado estratégico de municipios, industrias y empresas que necesitan soluciones de gestión ambiental confiables y a la vanguardia.</p>
+                <p>Nuestro equipo de ingenieros especializados garantiza que cada proyecto cumpla con los más altos estándares de calidad y la normatividad ambiental vigente en México.</p>
+                <div class="historia-features">
+                    <div class="feat-item"><span class="dot"></span> Pozos Profundos</div>
+                    <div class="feat-item"><span class="dot"></span> Aguas Residuales</div>
+                    <div class="feat-item"><span class="dot"></span> Biogás e H₂</div>
+                    <div class="feat-item"><span class="dot"></span> Reutilización</div>
+                    <div class="feat-item"><span class="dot"></span> Normatividad NOM</div>
+                    <div class="feat-item"><span class="dot"></span> Energía Renovable</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ UBICACIÓN ═══════════════════════════════════════════ -->
+<section class="section-light" id="ubicacion">
+    <div class="container">
+        <div class="section-title-light">
+            <span class="tag">Dónde estamos</span>
+            <h2>Nuestra Ubicación</h2>
+        </div>
+        <div class="ubicacion-grid">
+            <div class="mapa-wrap">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3729.472864704374!2d-102.7757957706543!3d20.812603307360437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842927005af6370f%3A0x66d3b84de4bf4ae7!2sEPIAS%20Water%20Specialist!5e0!3m2!1ses!2smx!4v1771277295564!5m2!1ses!2smx"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="ubicacion-info">
+                <h3>Visítanos en Tepatitlán</h3>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <strong>Dirección</strong>
+                        <span>Av. Manuel Gómez Morín Sur #121<br>Tepatitlán de Morelos, Jalisco, México</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-text">
+                        <strong>Teléfono</strong>
+                        <span>+52 (378) 707-6564</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">⏰</div>
+                    <div class="info-text">
+                        <strong>Horario</strong>
+                        <span>Lunes – Viernes: 9:00 AM – 7:00 PM<br>Sábado: 10:00 AM – 6:00 PM<br>Domingo: Cerrado</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-text">
+                        <strong>Email</strong>
+                        <span>epias.mx@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ CONTACTO ════════════════════════════════════════════ -->
+<section class="section-white" id="contacto">
+    <div class="container">
+        <div class="section-title-light">
+            <span class="tag">Escríbenos</span>
+            <h2>¿Tienes un proyecto en mente?</h2>
+            <p>Contáctanos y uno de nuestros ingenieros te responderá en menos de 24 horas.</p>
+        </div>
+        <div class="contacto-form-wrap">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" placeholder="Tu nombre completo">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" placeholder="tu@correo.com">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" placeholder="+52 (378) 000-0000">
+                </div>
+                <div class="form-group">
+                    <label>Asunto</label>
+                    <input type="text" placeholder="¿En qué podemos ayudarte?">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Mensaje</label>
+                <textarea placeholder="Describe tu proyecto o consulta..."></textarea>
+            </div>
+            <button type="button" class="btn-submit">Enviar Mensaje →</button>
+        </div>
+    </div>
+</section>
+
+<!-- ══ ZONA PRIVADA ════════════════════════════════════════ -->
+<div id="zona-privada" style="display:none;">
+    <div class="zona-privada-nav">
+        <div class="inner">
+            <span class="zona-label">🔒 Panel de Administración</span>
+            <div class="tab-btns">
+                <button class="tab-btn active" onclick="mostrarTab('clientes',this)">👥 Clientes</button>
+                <button class="tab-btn" onclick="mostrarTab('usuarios',this)">👤 Usuarios</button>
+                <button class="tab-btn" onclick="mostrarTab('productos',this)">📦 Productos</button>
+            </div>
+            <a href="logout.php" class="btn-cerrar-sesion">🚪 Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <!-- Panel Clientes -->
+    <div id="tab-clientes" class="tab-panel-section">
+        <div class="tab-panel-inner">
+            <div class="crud-card">
+                <h2 id="titulo-cliente">➕ Nuevo Cliente</h2>
+                <div id="msg-cliente" class="crud-msg"></div>
+                <input type="hidden" id="cliente-id">
+                <div class="form-grid">
+                    <div><label>Nombre</label><input type="text" id="cliente-nombre" placeholder="Nombre del cliente"></div>
+                    <div><label>Domicilio</label><input type="text" id="cliente-domicilio" placeholder="Domicilio"></div>
+                    <div><label>Giro</label><input type="text" id="cliente-giro" placeholder="Giro comercial"></div>
+                    <div><label>Razón Social</label><input type="text" id="cliente-razon" placeholder="Razón social"></div>
+                </div>
+                <div class="btn-group">
+                    <button class="crud-btn primary" onclick="guardarCliente()">💾 Guardar</button>
+                    <button class="crud-btn secondary" onclick="cancelarCliente()">✖ Cancelar</button>
+                </div>
+            </div>
+            <div class="crud-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+                    <h2 style="border:none;margin:0;padding:0;">📋 Lista de Clientes</h2>
+                    <button class="crud-btn success" onclick="cargarClientes()">🔄 Actualizar</button>
+                </div>
+                <table class="crud-table">
+                    <thead><tr><th>ID</th><th>Nombre</th><th>Domicilio</th><th>Giro</th><th>Razón Social</th><th>Acciones</th></tr></thead>
+                    <tbody id="tabla-clientes"><tr><td colspan="6" class="sin-datos">Cargando...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel Usuarios -->
+    <div id="tab-usuarios" class="tab-panel-section" style="display:none;">
+        <div class="tab-panel-inner">
+            <div class="crud-card">
+                <h2 id="titulo-usuario">➕ Nuevo Usuario</h2>
+                <div id="msg-usuario" class="crud-msg"></div>
+                <input type="hidden" id="usuario-id">
+                <div class="form-grid">
+                    <div><label>Nombre</label><input type="text" id="usuario-nombre" placeholder="Nombre completo"></div>
+                    <div><label>Correo</label><input type="email" id="usuario-correo" placeholder="correo@ejemplo.com"></div>
+                    <div><label>Contraseña <small style="font-weight:400;color:#9eadbd;">(vacío = no cambiar)</small></label><input type="password" id="usuario-pass" placeholder="••••••••"></div>
+                    <div><label>Rol</label>
+                        <select id="usuario-admin">
+                            <option value="0">👤 Usuario Normal</option>
+                            <option value="1">🔑 Administrador</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="crud-btn primary" onclick="guardarUsuario()">💾 Guardar</button>
+                    <button class="crud-btn secondary" onclick="cancelarUsuario()">✖ Cancelar</button>
+                </div>
+            </div>
+            <div class="crud-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+                    <h2 style="border:none;margin:0;padding:0;">📋 Lista de Usuarios</h2>
+                    <button class="crud-btn success" onclick="cargarUsuarios()">🔄 Actualizar</button>
+                </div>
+                <table class="crud-table">
+                    <thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Rol</th><th>Acciones</th></tr></thead>
+                    <tbody id="tabla-usuarios"><tr><td colspan="5" class="sin-datos">Cargando...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel Productos -->
+    <div id="tab-productos" class="tab-panel-section" style="display:none;">
+        <div class="tab-panel-inner">
+            <div class="crud-card">
+                <h2 id="titulo-producto">➕ Nuevo Producto</h2>
+                <div id="msg-producto" class="crud-msg"></div>
+                <input type="hidden" id="producto-id">
+                <div class="form-grid">
+                    <div><label>Código</label><input type="text" id="producto-codigo" placeholder="Ej. PROD-001"></div>
+                    <div><label>Precio ($)</label><input type="number" id="producto-precio" placeholder="0.00" step="0.01"></div>
+                    <div><label>Descripción</label><input type="text" id="producto-desc" placeholder="Descripción del producto"></div>
+                    <div><label>Stock</label><input type="number" id="producto-cantidad" placeholder="0"></div>
+                </div>
+                <div class="btn-group">
+                    <button class="crud-btn primary" onclick="guardarProducto()">💾 Guardar</button>
+                    <button class="crud-btn secondary" onclick="cancelarProducto()">✖ Cancelar</button>
+                </div>
+            </div>
+            <div class="crud-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+                    <h2 style="border:none;margin:0;padding:0;">📋 Inventario de Productos</h2>
+                    <button class="crud-btn success" onclick="cargarProductos()">🔄 Actualizar</button>
+                </div>
+                <table class="crud-table">
+                    <thead><tr><th>Código</th><th>Descripción</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead>
+                    <tbody id="tabla-productos"><tr><td colspan="5" class="sin-datos">Cargando...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="EPIAS.jpg" alt="EPIAS">
+                <h3>EPIAS</h3>
+                <p>Estudios y Proyectos de Ingeniería Ambiental y Sanitaria de los Altos de Jalisco. Comprometidos con el agua y el medio ambiente desde 2004.</p>
+                <div class="redes-sociales" style="margin-top:20px;">
+                    <a href="https://www.facebook.com/profile.php?id=61581842245177" target="_blank" class="red-social">
+                        <img src="Facebook.png" alt="Facebook"> Facebook
+                    </a>
+                    <a href="https://www.instagram.com/epias.mx2026/" target="_blank" class="red-social">
+                        <img src="Instagram.png" alt="Instagram"> Instagram
+                    </a>
+                    <a href="https://whatsapp.com" target="_blank" class="red-social">
+                        <img src="whatsapp.png" alt="WhatsApp"> WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="#servicios">Plantas Potabilizadoras</a></li>
+                    <li><a href="#servicios">Biogás e Hidrógeno</a></li>
+                    <li><a href="#servicios">Tratamiento Terciario</a></li>
+                    <li><a href="#servicios">Aguas Residuales</a></li>
+                    <li><a href="#servicios">Normatividad NOM</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#historia">Nuestra Historia</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="login.php">Acceso Privado</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EPIAS — Ingeniería Ambiental y Sanitaria. Todos los derechos reservados.</p>
+            <p>Tepatitlán de Morelos, Jalisco, México</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════
+//  API 1 — CLIMA (Open-Meteo, gratis, sin key)
+// ══════════════════════════════════════════════════
+fetch('https://api.open-meteo.com/v1/forecast?latitude=20.8169&longitude=-102.7635&hourly=temperature_2m&current_weather=true')
+    .then(r => r.json())
+    .then(d => {
+        const cw   = d.current_weather;
+        const temp = Math.round(cw.temperature);
+        const code = cw.weathercode;
+        const desc = { 0:'Despejado ☀️',1:'Mayormente despejado 🌤',2:'Parcialmente nublado ⛅',
+                       3:'Nublado ☁️',45:'Niebla 🌫',51:'Llovizna 🌦',61:'Lluvia 🌧',80:'Chubascos 🌦',95:'Tormenta ⛈' };
+        document.getElementById('clima-temp').textContent    = temp + '°C';
+        document.getElementById('clima-desc').textContent    = desc[code] || 'Variable 🌈';
+        document.getElementById('clima-humedad').textContent = '📍 Tepatitlán de Morelos';
+    })
+    .catch(() => { document.getElementById('clima-temp').textContent = '--°C'; });
+
+// ══════════════════════════════════════════════════
+//  API 2 — TIPO DE CAMBIO USD/MXN (ExchangeRate-API, gratis)
+// ══════════════════════════════════════════════════
+fetch('https://api.frankfurter.dev/v1/latest?from=USD&to=MXN')
+    .then(r => r.json())
+    .then(d => {
+        const mxn = d.rates.MXN.toFixed(2);
+        document.getElementById('dolar-valor').textContent = '$' + mxn;
+        document.getElementById('dolar-fecha').textContent = '📅 ' + new Date(d.date).toLocaleDateString('es-MX', {year:'numeric',month:'long',day:'numeric'});
+    })
+    .catch(() => { document.getElementById('dolar-valor').textContent = 'N/D'; });
+
+// ══════════════════════════════════════════════════
+//  SESIÓN — Detectar usuario logueado
+// ══════════════════════════════════════════════════
+fetch('sesion_check.php')
+    .then(r => r.json())
+    .then(data => {
+        if (data.logueado) {
+            // Mostrar zona privada
+            document.getElementById('zona-privada').style.display = 'block';
+
+            // Cambiar botón "Acceder" → "Cerrar Sesión"
+            const btn = document.getElementById('btn-login-nav');
+            if (btn) {
+                btn.textContent = '👋 ' + data.nombre;
+                btn.href = 'dasboard.php';
+                btn.style.background = 'linear-gradient(135deg,#e74c3c,#c0392b)';
+                btn.style.boxShadow  = '0 4px 15px rgba(231,76,60,0.4)';
+            }
+
+            // Cargar primer tab
+            cargarClientes();
+
+            // Si viene recién del login, hacer scroll automático a zona privada
+            if (document.referrer.includes('login.php') || document.referrer.includes('verificacion.php')) {
+                setTimeout(() => {
+                    document.getElementById('zona-privada').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 400);
+            }
+        }
+    })
+    .catch(() => {});
+
+// ══════════════════════════════════════════════════
+//  TABS
+// ══════════════════════════════════════════════════
+function mostrarTab(tab, btnEl) {
+    document.querySelectorAll('.tab-panel-section').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).style.display = 'block';
+    if (btnEl) btnEl.classList.add('active');
+    if (tab === 'clientes')  cargarClientes();
+    if (tab === 'usuarios')  cargarUsuarios();
+    if (tab === 'productos') cargarProductos();
+}
+
+// ══════════════════════════════════════════════════
+//  UTILERÍAS
+// ══════════════════════════════════════════════════
+function mostrarMsg(id, texto, tipo) {
+    const d = document.getElementById(id);
+    d.className = 'crud-msg ' + tipo;
+    d.textContent = texto;
+    setTimeout(() => { d.className = 'crud-msg'; d.textContent = ''; }, 3500);
+}
+function esc(str) { return String(str).replace(/'/g, "\\'"); }
+
+// ══════════════════════════════════════════════════
+//  CRUD CLIENTES
+// ══════════════════════════════════════════════════
+function cargarClientes() {
+    const tb = document.getElementById('tabla-clientes');
+    tb.innerHTML = '<tr><td colspan="6" class="sin-datos">Cargando...</td></tr>';
+    fetch('api_clientes.php').then(r => r.json()).then(data => {
+        if (!data.length) { tb.innerHTML = '<tr><td colspan="6" class="sin-datos">Sin clientes registrados.</td></tr>'; return; }
+        tb.innerHTML = data.map(c => `<tr>
+            <td>${c.id}</td><td><strong>${c.nombre}</strong></td><td>${c.domicilio}</td><td>${c.giro}</td><td>${c.razon_social}</td>
+            <td>
+                <button class="btn-edit" onclick="editarCliente(${c.id},'${esc(c.nombre)}','${esc(c.domicilio)}','${esc(c.giro)}','${esc(c.razon_social)}')">✏️ Editar</button>
+                <button class="btn-del"  onclick="eliminarCliente(${c.id},'${esc(c.nombre)}')">🗑 Eliminar</button>
+            </td></tr>`).join('');
+    }).catch(() => { tb.innerHTML = '<tr><td colspan="6" class="sin-datos" style="color:#e74c3c">Error de conexión</td></tr>'; });
+}
+function guardarCliente() {
+    const id = document.getElementById('cliente-id').value;
+    const nombre = document.getElementById('cliente-nombre').value.trim();
+    const dom    = document.getElementById('cliente-domicilio').value.trim();
+    const giro   = document.getElementById('cliente-giro').value.trim();
+    const razon  = document.getElementById('cliente-razon').value.trim();
+    if (!nombre) { mostrarMsg('msg-cliente','⚠️ El nombre es obligatorio.','error'); return; }
+    const datos = { nombre, domicilio: dom, giro, razon_social: razon };
+    if (id) datos.id = id;
+    mostrarMsg('msg-cliente','⏳ Guardando...','info');
+    fetch('api_clientes.php', { method: id ? 'PUT' : 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(datos) })
+        .then(r => r.json()).then(res => {
+            if (res.ok) { mostrarMsg('msg-cliente', id ? '✅ Actualizado.' : '✅ Registrado.','exito'); cancelarCliente(); cargarClientes(); }
+            else mostrarMsg('msg-cliente','❌ Error al guardar.','error');
+        });
+}
+function editarCliente(id, nombre, dom, giro, razon) {
+    document.getElementById('cliente-id').value = id;
+    document.getElementById('cliente-nombre').value = nombre;
+    document.getElementById('cliente-domicilio').value = dom;
+    document.getElementById('cliente-giro').value = giro;
+    document.getElementById('cliente-razon').value = razon;
+    document.getElementById('titulo-cliente').textContent = '✏️ Editar Cliente';
+    document.getElementById('tab-clientes').scrollIntoView({behavior:'smooth'});
+}
+function eliminarCliente(id, nombre) {
+    if (!confirm(`¿Eliminar el cliente "${nombre}"?`)) return;
+    fetch('api_clientes.php', { method:'DELETE', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id}) })
+        .then(r => r.json()).then(res => { if(res.ok) { mostrarMsg('msg-cliente','🗑 Eliminado.','exito'); cargarClientes(); } });
+}
+function cancelarCliente() {
+    ['cliente-id','cliente-nombre','cliente-domicilio','cliente-giro','cliente-razon'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('titulo-cliente').textContent = '➕ Nuevo Cliente';
+}
+
+// ══════════════════════════════════════════════════
+//  CRUD USUARIOS
+// ══════════════════════════════════════════════════
+function cargarUsuarios() {
+    const tb = document.getElementById('tabla-usuarios');
+    tb.innerHTML = '<tr><td colspan="5" class="sin-datos">Cargando...</td></tr>';
+    fetch('api_usuarios.php').then(r => r.json()).then(data => {
+        if (!data.length) { tb.innerHTML = '<tr><td colspan="5" class="sin-datos">Sin usuarios.</td></tr>'; return; }
+        tb.innerHTML = data.map(u => `<tr>
+            <td>${u.id}</td><td><strong>${u.nombre}</strong></td><td>${u.correo}</td>
+            <td>${u.es_admin == 1 ? '🔑 Admin' : '👤 Normal'}</td>
+            <td>
+                <button class="btn-edit" onclick="editarUsuario(${u.id},'${esc(u.nombre)}','${esc(u.correo)}',${u.es_admin})">✏️ Editar</button>
+                <button class="btn-del"  onclick="eliminarUsuario(${u.id},'${esc(u.nombre)}')">🗑 Eliminar</button>
+            </td></tr>`).join('');
+    }).catch(() => { tb.innerHTML = '<tr><td colspan="5" class="sin-datos" style="color:#e74c3c">Error de conexión</td></tr>'; });
+}
+function guardarUsuario() {
+    const id = document.getElementById('usuario-id').value;
+    const nombre = document.getElementById('usuario-nombre').value.trim();
+    const correo = document.getElementById('usuario-correo').value.trim();
+    const pass   = document.getElementById('usuario-pass').value;
+    const admin  = document.getElementById('usuario-admin').value;
+    if (!nombre || !correo) { mostrarMsg('msg-usuario','⚠️ Nombre y correo son obligatorios.','error'); return; }
+    const datos = { nombre, correo, password: pass, es_admin: admin };
+    if (id) datos.id = id;
+    mostrarMsg('msg-usuario','⏳ Guardando...','info');
+    fetch('api_usuarios.php', { method: id ? 'PUT' : 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(datos) })
+        .then(r => r.json()).then(res => {
+            if (res.ok) { mostrarMsg('msg-usuario', id ? '✅ Actualizado.' : '✅ Registrado.','exito'); cancelarUsuario(); cargarUsuarios(); }
+            else mostrarMsg('msg-usuario','❌ Error al guardar.','error');
+        });
+}
+function editarUsuario(id, nombre, correo, admin) {
+    document.getElementById('usuario-id').value = id;
+    document.getElementById('usuario-nombre').value = nombre;
+    document.getElementById('usuario-correo').value = correo;
+    document.getElementById('usuario-pass').value = '';
+    document.getElementById('usuario-admin').value = admin;
+    document.getElementById('titulo-usuario').textContent = '✏️ Editar Usuario';
+    document.getElementById('tab-usuarios').scrollIntoView({behavior:'smooth'});
+}
+function eliminarUsuario(id, nombre) {
+    if (!confirm(`¿Eliminar al usuario "${nombre}"?`)) return;
+    fetch('api_usuarios.php', { method:'DELETE', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id}) })
+        .then(r => r.json()).then(res => { if(res.ok) { mostrarMsg('msg-usuario','🗑 Eliminado.','exito'); cargarUsuarios(); } });
+}
+function cancelarUsuario() {
+    ['usuario-id','usuario-nombre','usuario-correo','usuario-pass'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('usuario-admin').value = '0';
+    document.getElementById('titulo-usuario').textContent = '➕ Nuevo Usuario';
+}
+
+// ══════════════════════════════════════════════════
+//  CRUD PRODUCTOS
+// ══════════════════════════════════════════════════
+function cargarProductos() {
+    const tb = document.getElementById('tabla-productos');
+    tb.innerHTML = '<tr><td colspan="5" class="sin-datos">Cargando...</td></tr>';
+    fetch('api_productos.php').then(r => r.json()).then(data => {
+        if (!data.length) { tb.innerHTML = '<tr><td colspan="5" class="sin-datos">Sin productos.</td></tr>'; return; }
+        tb.innerHTML = data.map(p => `<tr>
+            <td><strong>${p.codigo_prod}</strong></td><td>${p.desc_prod}</td>
+            <td>$${parseFloat(p.precio_prod).toFixed(2)}</td><td>${p.cantidad_prod}</td>
+            <td>
+                <button class="btn-edit" onclick="editarProducto(${p.id},'${esc(p.codigo_prod)}','${esc(p.desc_prod)}',${p.precio_prod},${p.cantidad_prod})">✏️ Editar</button>
+                <button class="btn-del"  onclick="eliminarProducto(${p.id},'${esc(p.desc_prod)}')">🗑 Eliminar</button>
+            </td></tr>`).join('');
+    }).catch(() => { tb.innerHTML = '<tr><td colspan="5" class="sin-datos" style="color:#e74c3c">Error de conexión</td></tr>'; });
+}
+function guardarProducto() {
+    const id = document.getElementById('producto-id').value;
+    const codigo = document.getElementById('producto-codigo').value.trim();
+    const desc   = document.getElementById('producto-desc').value.trim();
+    const precio = parseFloat(document.getElementById('producto-precio').value);
+    const cant   = parseInt(document.getElementById('producto-cantidad').value);
+    if (!codigo || !desc) { mostrarMsg('msg-producto','⚠️ Código y descripción son obligatorios.','error'); return; }
+    const datos = { codigo_prod: codigo, desc_prod: desc, precio_prod: precio||0, cantidad_prod: cant||0 };
+    if (id) datos.id = id;
+    mostrarMsg('msg-producto','⏳ Guardando...','info');
+    fetch('api_productos.php', { method: id ? 'PUT' : 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(datos) })
+        .then(r => r.json()).then(res => {
+            if (res.ok) { mostrarMsg('msg-producto', id ? '✅ Actualizado.' : '✅ Registrado.','exito'); cancelarProducto(); cargarProductos(); }
+            else mostrarMsg('msg-producto','❌ Error al guardar.','error');
+        });
+}
+function editarProducto(id, codigo, desc, precio, cant) {
+    document.getElementById('producto-id').value = id;
+    document.getElementById('producto-codigo').value = codigo;
+    document.getElementById('producto-desc').value = desc;
+    document.getElementById('producto-precio').value = precio;
+    document.getElementById('producto-cantidad').value = cant;
+    document.getElementById('titulo-producto').textContent = '✏️ Editar Producto';
+    document.getElementById('tab-productos').scrollIntoView({behavior:'smooth'});
+}
+function eliminarProducto(id, nombre) {
+    if (!confirm(`¿Eliminar el producto "${nombre}"?`)) return;
+    fetch('api_productos.php', { method:'DELETE', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id}) })
+        .then(r => r.json()).then(res => { if(res.ok) { mostrarMsg('msg-producto','🗑 Eliminado.','exito'); cargarProductos(); } });
+}
+function cancelarProducto() {
+    ['producto-id','producto-codigo','producto-desc','producto-precio','producto-cantidad'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('titulo-producto').textContent = '➕ Nuevo Producto';
+}
+</script>
+
+</body>
+</html>
